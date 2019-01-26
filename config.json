@@ -1,11 +1,12 @@
 {
     "username": "",
     "password": "",
-    "department": "",
     "campuscode": "",
+    "department": "",
     "skill": "",
     "level": "",
     "start": "",
     "end": "",
+    "delay": "",
     "generatereports": false
 }
