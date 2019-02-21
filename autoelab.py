@@ -9,7 +9,7 @@ def getquestion(questionno):
         questionpage = session.get(quesurl + 'id={}&value={}'.format(level, questionno), headers=headers).text
 
     except:
-        input('Error: Unable to access the question page.')
+        input('Error: Unable to access the question page.\nPress Enter to exit.\n')
         sys.exit()
 
     try:
@@ -66,12 +66,16 @@ def getskilltopic(skill):
     return(skill, topic)
 
 def login(username, password):
-    loginpayload = {'userid': username,'password': password} 
-    response = session.post(homeurl, data=loginpayload, headers=headers).text
-    if response == '0':
-        print('Invalid Username or Password')
-        os.system('pause')
+    loginpayload = {'userid': username,'password': password}
+    try: 
+        response = session.post(homeurl, data=loginpayload, headers=headers).text
+    except: 
+        input('Error: Unable to connect to elab servers.\nPress Enter to exit.\n')
         sys.exit()
+    else: 
+        if response == '0':
+            input('Invalid Username or Password.\nPress Enter to exit.\n')
+            sys.exit()
 
 def getinput():
 
@@ -169,8 +173,11 @@ def autoelab(username, password, campuscode, department, skill, level, start, en
 
 update = json.loads(requests.get('https://raw.githubusercontent.com/autoelab/autoelab/master/updater.json').text)
 if not version == update['version']:
-    input('An update is available! Get it from this link\n' + 'https://github.com/autoelab/autoelab/releases\n\nChangelog:\n' + 
-        str(update['changes'])[1:-1].replace(", ","\n").replace("'","") + '\n\n')
+    input(
+        'An update is available! Get it at this link :\n' + 
+        'https://github.com/autoelab/autoelab/releases\n\nChangelog :\n\n' + 
+        str(update['changes'])[1:-1].replace(", ","\n").replace("'","") + '\n')
+    sys.exit()
 
 if len(sys.argv) == 10:
     cdir, username, password, campuscode, department, skill, level, start, end, delay = sys.argv
@@ -186,6 +193,7 @@ elif not os.path.isfile('config.json'):
         'Press Enter to continue.\n')
 
 with open('config.json', 'r') as f: config = json.load(f)
+
 getinput()
 
 autoelab(username, password, campuscode, department, skill, int(level), int(start), int(end), int(delay), generatereports)
