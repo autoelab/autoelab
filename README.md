@@ -1,6 +1,14 @@
-# autoelab
+# autoelab is dead. use [pythonelab](https://github.com/pythonelab/pythonelab).
 
 Automagically solve all questions in your elab.
+
+#### The script is dead due to the recent changes made to the website.
+
+However, this repository will stay as it is for reference purposes. Hopefully this'll help someone who aims to automate elab for all courses, departments and campuses in the future.
+
+(also, I kinda forgot this account's password and I can't recover as I used tempmail to register lmao)
+
+For now, I've made a simplified version of this script on a different account especially for python this semester. It's easier to use but a lot of user inputs are removed. Regardless, It gets the job done. You can find it here at [pythonelab](https://github.com/pythonelab/pythonelab).
 
 ## How do I use it?
 
